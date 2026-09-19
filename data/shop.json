@@ -1,0 +1,19 @@
+{
+  "hats": [
+    {"id": "none", "name": "No hat", "cost": 0},
+    {"id": "cap", "name": "Blue cap", "cost": 40},
+    {"id": "crown", "name": "Paper crown", "cost": 80},
+    {"id": "headband", "name": "Star band", "cost": 60}
+  ],
+  "shirts": [
+    {"id": "plain", "name": "Plain shirt", "cost": 0},
+    {"id": "stripe", "name": "Stripe shirt", "cost": 40},
+    {"id": "star", "name": "Star shirt", "cost": 70},
+    {"id": "mrj", "name": "MRJ shirt", "cost": 90}
+  ],
+  "glasses": [
+    {"id": "none", "name": "No glasses", "cost": 0},
+    {"id": "round", "name": "Round glasses", "cost": 50},
+    {"id": "sun", "name": "Sun glasses", "cost": 70}
+  ]
+}

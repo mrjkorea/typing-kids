@@ -1,0 +1,1299 @@
+{
+  "product": "MRJ Typing Kids",
+  "version": 1,
+  "notes": "Original drills. Key order matches public typing.com Beginner + Intermediate titles. No copied lesson text, videos, or assets.",
+  "pass_accuracy": 90,
+  "default_wpm": 10,
+  "fingers": {
+    "q": "LP",
+    "a": "LP",
+    "z": "LP",
+    "w": "LR",
+    "s": "LR",
+    "x": "LR",
+    "e": "LM",
+    "d": "LM",
+    "c": "LM",
+    "r": "LI",
+    "f": "LI",
+    "v": "LI",
+    "t": "LI",
+    "g": "LI",
+    "b": "LI",
+    "y": "RI",
+    "h": "RI",
+    "n": "RI",
+    "u": "RI",
+    "j": "RI",
+    "m": "RI",
+    "i": "RM",
+    "k": "RM",
+    "o": "RR",
+    "l": "RR",
+    "p": "RP",
+    ";": "RP",
+    ",": "RR",
+    ".": "RR",
+    " ": "TH",
+    "\n": "RP"
+  },
+  "finger_names": {
+    "LP": "left pinky",
+    "LR": "left ring",
+    "LM": "left middle",
+    "LI": "left index",
+    "RI": "right index",
+    "RM": "right middle",
+    "RR": "right ring",
+    "RP": "right pinky",
+    "TH": "thumbs"
+  },
+  "lessons": [
+    {
+      "id": "p0",
+      "title": "How to Sit and Place Your Hands",
+      "unit": "Getting Ready",
+      "track": "prep",
+      "new_keys": [],
+      "allowed": [],
+      "kind": "lesson_pages",
+      "intro": "Learn how to sit and where each finger lives before you type.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Sit like a typer",
+          "body": "Feet flat on the floor. Back straight, not stiff. Screen at eye level. Elbows near your sides. Wrists float \u2014 do not rest them on the desk while you type.",
+          "tts": "Feet flat on the floor. Back straight. Screen at eye level. Elbows by your sides. Wrists float."
+        },
+        {
+          "type": "teach",
+          "title": "Home row bumps",
+          "body": "Feel the little bumps on F and J. Left index finger on F. Right index finger on J. Those bumps tell your hands they are home.",
+          "tts": "Feel the bumps on F and J. Left index on F. Right index on J."
+        },
+        {
+          "type": "teach",
+          "title": "Left hand home",
+          "body": "Left pinky A. Left ring S. Left middle D. Left index F. Left index also reaches G. Thumbs rest on the space bar.",
+          "tts": "Left hand. Pinky A, ring S, middle D, index F. Thumbs on space."
+        },
+        {
+          "type": "teach",
+          "title": "Right hand home",
+          "body": "Right index J. Right middle K. Right ring L. Right pinky semicolon. Right index also reaches H. Always return home after each letter.",
+          "tts": "Right hand. Index J, middle K, ring L, pinky semicolon. Always come home."
+        }
+      ]
+    },
+    {
+      "id": "b01",
+      "title": "J, F, and Space",
+      "unit": "Getting Started",
+      "track": "beginner",
+      "new_keys": [
+        "j",
+        "f"
+      ],
+      "allowed": [
+        " ",
+        "f",
+        "j"
+      ],
+      "kind": "drill",
+      "intro": "Left index on F. Right index on J. Thumbs tap space. Stay on home row.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "J, F, and Space",
+          "body": "Left index on F. Right index on J. Thumbs tap space. Stay on home row.",
+          "tts": "Left index on F. Right index on J. Thumbs tap space. Stay on home row.",
+          "highlight": [
+            "j",
+            "f"
+          ]
+        },
+        {
+          "type": "keys",
+          "prompt": "j j j j f f f f"
+        },
+        {
+          "type": "keys",
+          "prompt": "jf jf jf jf jf jf jf jf"
+        },
+        {
+          "type": "keys",
+          "prompt": "fj fj fj fj fj fj fj fj"
+        },
+        {
+          "type": "keys",
+          "prompt": "j f j f j f j f j f j f j f j f j f j f j f j f"
+        },
+        {
+          "type": "words",
+          "prompt": "j f"
+        }
+      ]
+    },
+    {
+      "id": "b02",
+      "title": "U, R, and K Keys",
+      "unit": "Getting Started",
+      "track": "beginner",
+      "new_keys": [
+        "u",
+        "r",
+        "k"
+      ],
+      "allowed": [
+        " ",
+        "f",
+        "j",
+        "k",
+        "r",
+        "u"
+      ],
+      "kind": "drill",
+      "intro": "R is above F (left index up). U is above J (right index up). K is right middle, home row.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "U, R, and K Keys",
+          "body": "R is above F (left index up). U is above J (right index up). K is right middle, home row.",
+          "tts": "R is above F (left index up). U is above J (right index up). K is right middle, home row.",
+          "highlight": [
+            "u",
+            "r",
+            "k"
+          ]
+        },
+        {
+          "type": "keys",
+          "prompt": "u u u u r r r r k k k k"
+        },
+        {
+          "type": "keys",
+          "prompt": "ur ur ur ur ur ur ur ur"
+        },
+        {
+          "type": "keys",
+          "prompt": "ru ru ru ru ru ru ru ru"
+        },
+        {
+          "type": "keys",
+          "prompt": "u r k u r k u r k u r k u r k u r k u r k u r k"
+        },
+        {
+          "type": "words",
+          "prompt": "fur juk ruk"
+        }
+      ]
+    },
+    {
+      "id": "b03",
+      "title": "D, E, and I Keys",
+      "unit": "Getting Started",
+      "track": "beginner",
+      "new_keys": [
+        "d",
+        "e",
+        "i"
+      ],
+      "allowed": [
+        " ",
+        "d",
+        "e",
+        "f",
+        "i",
+        "j",
+        "k",
+        "r",
+        "u"
+      ],
+      "kind": "drill",
+      "intro": "D left middle home. E left middle up. I right middle up.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "D, E, and I Keys",
+          "body": "D left middle home. E left middle up. I right middle up.",
+          "tts": "D left middle home. E left middle up. I right middle up.",
+          "highlight": [
+            "d",
+            "e",
+            "i"
+          ]
+        },
+        {
+          "type": "keys",
+          "prompt": "d d d d e e e e i i i i"
+        },
+        {
+          "type": "keys",
+          "prompt": "de de de de de de de de"
+        },
+        {
+          "type": "keys",
+          "prompt": "ed ed ed ed ed ed ed ed"
+        },
+        {
+          "type": "keys",
+          "prompt": "d e i d e i d e i d e i d e i d e i d e i d e i"
+        },
+        {
+          "type": "words",
+          "prompt": "if red rid did feed deed did red did red"
+        }
+      ]
+    },
+    {
+      "id": "b04",
+      "title": "C, G, and N Keys",
+      "unit": "Getting Started",
+      "track": "beginner",
+      "new_keys": [
+        "c",
+        "g",
+        "n"
+      ],
+      "allowed": [
+        " ",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "i",
+        "j",
+        "k",
+        "n",
+        "r",
+        "u"
+      ],
+      "kind": "drill",
+      "intro": "C left middle down. G left index right. N right index down.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "C, G, and N Keys",
+          "body": "C left middle down. G left index right. N right index down.",
+          "tts": "C left middle down. G left index right. N right index down.",
+          "highlight": [
+            "c",
+            "g",
+            "n"
+          ]
+        },
+        {
+          "type": "keys",
+          "prompt": "c c c c g g g g n n n n"
+        },
+        {
+          "type": "keys",
+          "prompt": "cg cg cg cg cg cg cg cg"
+        },
+        {
+          "type": "keys",
+          "prompt": "gc gc gc gc gc gc gc gc"
+        },
+        {
+          "type": "keys",
+          "prompt": "c g n c g n c g n c g n c g n c g n c g n c g n"
+        },
+        {
+          "type": "words",
+          "prompt": "if in red rid did feed deed did run red"
+        }
+      ]
+    },
+    {
+      "id": "b05",
+      "title": "Beginner Review 1",
+      "unit": "Getting Started",
+      "track": "beginner",
+      "new_keys": [],
+      "allowed": [
+        " ",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "i",
+        "j",
+        "k",
+        "n",
+        "r",
+        "u"
+      ],
+      "kind": "drill",
+      "intro": "Review every key you know so far. Slow and correct beats fast and messy.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Beginner Review 1",
+          "body": "Review every key you know so far. Slow and correct beats fast and messy.",
+          "tts": "Review every key you know so far. Slow and correct beats fast and messy.",
+          "highlight": []
+        },
+        {
+          "type": "words",
+          "prompt": "if in red rid did feed deed did run red green friend kind"
+        },
+        {
+          "type": "words",
+          "prompt": "if in red rid did feed deed did run red green friend kind"
+        }
+      ]
+    },
+    {
+      "id": "b06",
+      "title": "T, S, and L Keys",
+      "unit": "Reaching Out",
+      "track": "beginner",
+      "new_keys": [
+        "t",
+        "s",
+        "l"
+      ],
+      "allowed": [
+        " ",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "i",
+        "j",
+        "k",
+        "l",
+        "n",
+        "r",
+        "s",
+        "t",
+        "u"
+      ],
+      "kind": "drill",
+      "intro": "T left index up-right. S left ring home. L right ring home.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "T, S, and L Keys",
+          "body": "T left index up-right. S left ring home. L right ring home.",
+          "tts": "T left index up-right. S left ring home. L right ring home.",
+          "highlight": [
+            "t",
+            "s",
+            "l"
+          ]
+        },
+        {
+          "type": "keys",
+          "prompt": "t t t t s s s s l l l l"
+        },
+        {
+          "type": "keys",
+          "prompt": "ts ts ts ts ts ts ts ts"
+        },
+        {
+          "type": "keys",
+          "prompt": "st st st st st st st st"
+        },
+        {
+          "type": "keys",
+          "prompt": "t s l t s l t s l t s l t s l t s l t s l t s l"
+        },
+        {
+          "type": "words",
+          "prompt": "if is it in just full kids desk silk disk"
+        }
+      ]
+    },
+    {
+      "id": "b07",
+      "title": "O, B, and A Keys",
+      "unit": "Reaching Out",
+      "track": "beginner",
+      "new_keys": [
+        "o",
+        "b",
+        "a"
+      ],
+      "allowed": [
+        " ",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "i",
+        "j",
+        "k",
+        "l",
+        "n",
+        "o",
+        "r",
+        "s",
+        "t",
+        "u"
+      ],
+      "kind": "drill",
+      "intro": "O right ring up. B left index down-right. A left pinky home.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "O, B, and A Keys",
+          "body": "O right ring up. B left index down-right. A left pinky home.",
+          "tts": "O right ring up. B left index down-right. A left pinky home.",
+          "highlight": [
+            "o",
+            "b",
+            "a"
+          ]
+        },
+        {
+          "type": "keys",
+          "prompt": "o o o o b b b b a a a a"
+        },
+        {
+          "type": "keys",
+          "prompt": "ob ob ob ob ob ob ob ob"
+        },
+        {
+          "type": "keys",
+          "prompt": "bo bo bo bo bo bo bo bo"
+        },
+        {
+          "type": "keys",
+          "prompt": "o b a o b a o b a o b a o b a o b a o b a o b a"
+        },
+        {
+          "type": "words",
+          "prompt": "a as all ask add an if is it in"
+        }
+      ]
+    },
+    {
+      "id": "b08",
+      "title": "V, H, and M Keys",
+      "unit": "Reaching Out",
+      "track": "beginner",
+      "new_keys": [
+        "v",
+        "h",
+        "m"
+      ],
+      "allowed": [
+        " ",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v"
+      ],
+      "kind": "drill",
+      "intro": "V left index down. H right index left. M right index down.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "V, H, and M Keys",
+          "body": "V left index down. H right index left. M right index down.",
+          "tts": "V left index down. H right index left. M right index down.",
+          "highlight": [
+            "v",
+            "h",
+            "m"
+          ]
+        },
+        {
+          "type": "keys",
+          "prompt": "v v v v h h h h m m m m"
+        },
+        {
+          "type": "keys",
+          "prompt": "vh vh vh vh vh vh vh vh"
+        },
+        {
+          "type": "keys",
+          "prompt": "hv hv hv hv hv hv hv hv"
+        },
+        {
+          "type": "keys",
+          "prompt": "v h m v h m v h m v h m v h m v h m v h m v h m"
+        },
+        {
+          "type": "words",
+          "prompt": "a as all ask add an if is it in"
+        }
+      ]
+    },
+    {
+      "id": "b09",
+      "title": "Period and Comma",
+      "unit": "Reaching Out",
+      "track": "beginner",
+      "new_keys": [
+        ".",
+        ","
+      ],
+      "allowed": [
+        " ",
+        ",",
+        ".",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v"
+      ],
+      "kind": "drill",
+      "intro": "Comma right ring down. Period right ring down, one key to the right.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Period and Comma",
+          "body": "Comma right ring down. Period right ring down, one key to the right.",
+          "tts": "Comma right ring down. Period right ring down, one key to the right.",
+          "highlight": [
+            ".",
+            ","
+          ]
+        },
+        {
+          "type": "keys",
+          "prompt": ". . . . , , , ,"
+        },
+        {
+          "type": "keys",
+          "prompt": "., ., ., ., ., ., ., .,"
+        },
+        {
+          "type": "keys",
+          "prompt": ",. ,. ,. ,. ,. ,. ,. ,."
+        },
+        {
+          "type": "keys",
+          "prompt": ". , . , . , . , . , . , . , . , . , . , . , . ,"
+        },
+        {
+          "type": "words",
+          "prompt": "a as all ask add an if is it in"
+        }
+      ]
+    },
+    {
+      "id": "b10",
+      "title": "Beginner Review 2",
+      "unit": "Reaching Out",
+      "track": "beginner",
+      "new_keys": [],
+      "allowed": [
+        " ",
+        ",",
+        ".",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v"
+      ],
+      "kind": "drill",
+      "intro": "Mix the new reach keys with home row. Eyes on the screen, not the keyboard.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Beginner Review 2",
+          "body": "Mix the new reach keys with home row. Eyes on the screen, not the keyboard.",
+          "tts": "Mix the new reach keys with home row. Eyes on the screen, not the keyboard.",
+          "highlight": []
+        },
+        {
+          "type": "words",
+          "prompt": "a as all ask add an if is it in he had has hall sad dad"
+        },
+        {
+          "type": "words",
+          "prompt": "a as all ask add an if is it in he had has hall sad dad"
+        }
+      ]
+    },
+    {
+      "id": "b11",
+      "title": "W, X, and ; Keys",
+      "unit": "The Home Stretch",
+      "track": "beginner",
+      "new_keys": [
+        "w",
+        "x",
+        ";"
+      ],
+      "allowed": [
+        " ",
+        ",",
+        ".",
+        ";",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x"
+      ],
+      "kind": "drill",
+      "intro": "W left ring up. X left ring down. Semicolon right pinky home.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "W, X, and ; Keys",
+          "body": "W left ring up. X left ring down. Semicolon right pinky home.",
+          "tts": "W left ring up. X left ring down. Semicolon right pinky home.",
+          "highlight": [
+            "w",
+            "x",
+            ";"
+          ]
+        },
+        {
+          "type": "keys",
+          "prompt": "w w w w x x x x ; ; ; ;"
+        },
+        {
+          "type": "keys",
+          "prompt": "wx wx wx wx wx wx wx wx"
+        },
+        {
+          "type": "keys",
+          "prompt": "xw xw xw xw xw xw xw xw"
+        },
+        {
+          "type": "keys",
+          "prompt": "w x ; w x ; w x ; w x ; w x ; w x ; w x ; w x ;"
+        },
+        {
+          "type": "words",
+          "prompt": "a as all ask add an if is it in"
+        }
+      ]
+    },
+    {
+      "id": "b12",
+      "title": "Q, Y, and P Keys",
+      "unit": "The Home Stretch",
+      "track": "beginner",
+      "new_keys": [
+        "q",
+        "y",
+        "p"
+      ],
+      "allowed": [
+        " ",
+        ",",
+        ".",
+        ";",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y"
+      ],
+      "kind": "drill",
+      "intro": "Q left pinky up. Y right index up-left. P right pinky up.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Q, Y, and P Keys",
+          "body": "Q left pinky up. Y right index up-left. P right pinky up.",
+          "tts": "Q left pinky up. Y right index up-left. P right pinky up.",
+          "highlight": [
+            "q",
+            "y",
+            "p"
+          ]
+        },
+        {
+          "type": "keys",
+          "prompt": "q q q q y y y y p p p p"
+        },
+        {
+          "type": "keys",
+          "prompt": "qy qy qy qy qy qy qy qy"
+        },
+        {
+          "type": "keys",
+          "prompt": "yq yq yq yq yq yq yq yq"
+        },
+        {
+          "type": "keys",
+          "prompt": "q y p q y p q y p q y p q y p q y p q y p q y p"
+        },
+        {
+          "type": "words",
+          "prompt": "a as all ask add an if is it in"
+        }
+      ]
+    },
+    {
+      "id": "b13",
+      "title": "Z and Enter Keys",
+      "unit": "The Home Stretch",
+      "track": "beginner",
+      "new_keys": [
+        "z"
+      ],
+      "allowed": [
+        " ",
+        ",",
+        ".",
+        ";",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
+      ],
+      "kind": "drill",
+      "intro": "Z left pinky down. Enter is right pinky, far right. Press Enter at the end of a line.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Z and Enter Keys",
+          "body": "Z left pinky down. Enter is right pinky, far right. Press Enter at the end of a line.",
+          "tts": "Z left pinky down. Enter is right pinky, far right. Press Enter at the end of a line.",
+          "highlight": [
+            "z"
+          ]
+        },
+        {
+          "type": "keys",
+          "prompt": "z z z z"
+        },
+        {
+          "type": "keys",
+          "prompt": "z z z z z z z z z z z z z z z z z z z z z z z z"
+        },
+        {
+          "type": "words",
+          "prompt": "a as all ask add an if is it in"
+        },
+        {
+          "type": "sentence",
+          "need_enter": true,
+          "prompt": "a kid can type\n"
+        }
+      ]
+    },
+    {
+      "id": "b14",
+      "title": "Beginner Wrap-up",
+      "unit": "Wrapping Up",
+      "track": "beginner",
+      "new_keys": [],
+      "allowed": [
+        " ",
+        ",",
+        ".",
+        ";",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
+      ],
+      "kind": "drill",
+      "intro": "All letter keys. Keep fingers curved. Return home after every key.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Beginner Wrap-up",
+          "body": "All letter keys. Keep fingers curved. Return home after every key.",
+          "tts": "All letter keys. Keep fingers curved. Return home after every key.",
+          "highlight": []
+        },
+        {
+          "type": "words",
+          "prompt": "a as all ask add an if is it in he had has hall sad dad"
+        },
+        {
+          "type": "words",
+          "prompt": "a as all ask add an if is it in he had has hall sad dad"
+        },
+        {
+          "type": "sentence",
+          "prompt": "a kind kid can read and type . she can ask and learn ."
+        }
+      ]
+    },
+    {
+      "id": "b15",
+      "title": "Beginner Assessment",
+      "unit": "Wrapping Up",
+      "track": "beginner",
+      "new_keys": [],
+      "allowed": [
+        " ",
+        ",",
+        ".",
+        ";",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
+      ],
+      "kind": "assessment",
+      "intro": "One-minute test. You need 90 percent accuracy and the teacher WPM goal.",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Beginner Assessment",
+          "body": "One-minute test. You need 90 percent accuracy and the teacher WPM goal.",
+          "tts": "One-minute test. You need 90 percent accuracy and the teacher WPM goal.",
+          "highlight": []
+        },
+        {
+          "type": "timed",
+          "seconds": 60,
+          "prompt": "a fast kid can type and learn . she can read and write . he can ask and find . we can play and rest ."
+        }
+      ]
+    },
+    {
+      "id": "i01",
+      "title": "Common English Words",
+      "unit": "Building Speed",
+      "track": "intermediate",
+      "new_keys": [],
+      "allowed": [],
+      "kind": "drill",
+      "intro": "Common English Words",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Common English Words",
+          "body": "Use every finger you already learned. Accuracy 90 percent or you retry.",
+          "tts": "Common English Words. Accuracy must be ninety percent."
+        },
+        {
+          "type": "words",
+          "prompt": "the and for you are but not all can her was one our out day get has him his how"
+        },
+        {
+          "type": "sentence",
+          "prompt": "the and for you are but not all can her was one our out day get has him his how"
+        }
+      ]
+    },
+    {
+      "id": "i02",
+      "title": "Easy Home Row Words",
+      "unit": "Building Speed",
+      "track": "intermediate",
+      "new_keys": [],
+      "allowed": [],
+      "kind": "drill",
+      "intro": "Easy Home Row Words",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Easy Home Row Words",
+          "body": "Use every finger you already learned. Accuracy 90 percent or you retry.",
+          "tts": "Easy Home Row Words. Accuracy must be ninety percent."
+        },
+        {
+          "type": "words",
+          "prompt": "a sad lad had flask hall fall dash glad salad flasks"
+        },
+        {
+          "type": "sentence",
+          "prompt": "a sad lad had flask hall fall dash glad salad flasks"
+        }
+      ]
+    },
+    {
+      "id": "i03",
+      "title": "Easy Top Row Words",
+      "unit": "Building Speed",
+      "track": "intermediate",
+      "new_keys": [],
+      "allowed": [],
+      "kind": "drill",
+      "intro": "Easy Top Row Words",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Easy Top Row Words",
+          "body": "Use every finger you already learned. Accuracy 90 percent or you retry.",
+          "tts": "Easy Top Row Words. Accuracy must be ninety percent."
+        },
+        {
+          "type": "words",
+          "prompt": "we you type quiet power true wet yet prey query"
+        },
+        {
+          "type": "sentence",
+          "prompt": "we you type quiet power true wet yet prey query"
+        }
+      ]
+    },
+    {
+      "id": "i04",
+      "title": "Easy Bottom Row Words",
+      "unit": "Building Speed",
+      "track": "intermediate",
+      "new_keys": [],
+      "allowed": [],
+      "kind": "drill",
+      "intro": "Easy Bottom Row Words",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Easy Bottom Row Words",
+          "body": "Use every finger you already learned. Accuracy 90 percent or you retry.",
+          "tts": "Easy Bottom Row Words. Accuracy must be ninety percent."
+        },
+        {
+          "type": "words",
+          "prompt": "cab van mix zoom box next can ban man"
+        },
+        {
+          "type": "sentence",
+          "prompt": "cab van mix zoom box next can ban man"
+        }
+      ]
+    },
+    {
+      "id": "i05",
+      "title": "Shift Key and Capitalization",
+      "unit": "Mechanics",
+      "track": "intermediate",
+      "new_keys": [],
+      "allowed": [],
+      "kind": "drill",
+      "intro": "Shift Key and Capitalization",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Shift Key and Capitalization",
+          "body": "Use every finger you already learned. Accuracy 90 percent or you retry.",
+          "tts": "Shift Key and Capitalization. Accuracy must be ninety percent."
+        },
+        {
+          "type": "sentence",
+          "prompt": "A kid can Type. She can Read. He can Learn."
+        }
+      ]
+    },
+    {
+      "id": "i06",
+      "title": "Basic Punctuation",
+      "unit": "Mechanics",
+      "track": "intermediate",
+      "new_keys": [],
+      "allowed": [],
+      "kind": "drill",
+      "intro": "Basic Punctuation",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Basic Punctuation",
+          "body": "Use every finger you already learned. Accuracy 90 percent or you retry.",
+          "tts": "Basic Punctuation. Accuracy must be ninety percent."
+        },
+        {
+          "type": "sentence",
+          "prompt": "Stop. Wait, please. Yes? No. Let's go."
+        }
+      ]
+    },
+    {
+      "id": "i07",
+      "title": "Intermediate Punctuation",
+      "unit": "Mechanics",
+      "track": "intermediate",
+      "new_keys": [],
+      "allowed": [],
+      "kind": "drill",
+      "intro": "Intermediate Punctuation",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Intermediate Punctuation",
+          "body": "Use every finger you already learned. Accuracy 90 percent or you retry.",
+          "tts": "Intermediate Punctuation. Accuracy must be ninety percent."
+        },
+        {
+          "type": "sentence",
+          "prompt": "Wow! Wait \u2014 she said, \"Let's try.\" Okay; we can."
+        }
+      ]
+    },
+    {
+      "id": "i08",
+      "title": "Quick Sentences",
+      "unit": "Fluency",
+      "track": "intermediate",
+      "new_keys": [],
+      "allowed": [],
+      "kind": "drill",
+      "intro": "Quick Sentences",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Quick Sentences",
+          "body": "Use every finger you already learned. Accuracy 90 percent or you retry.",
+          "tts": "Quick Sentences. Accuracy must be ninety percent."
+        },
+        {
+          "type": "words",
+          "prompt": "The class can type with care. Kids keep eyes on the screen."
+        },
+        {
+          "type": "sentence",
+          "prompt": "The class can type with care. Kids keep eyes on the screen."
+        }
+      ]
+    },
+    {
+      "id": "i09",
+      "title": "Short Paragraphs",
+      "unit": "Fluency",
+      "track": "intermediate",
+      "new_keys": [],
+      "allowed": [],
+      "kind": "drill",
+      "intro": "Short Paragraphs",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Short Paragraphs",
+          "body": "Use every finger you already learned. Accuracy 90 percent or you retry.",
+          "tts": "Short Paragraphs. Accuracy must be ninety percent."
+        },
+        {
+          "type": "sentence",
+          "prompt": "Our class learns to type each day. We sit tall and keep our fingers on home row. Slow accuracy first. Speed comes later."
+        }
+      ]
+    },
+    {
+      "id": "i10",
+      "title": "Speed Drills",
+      "unit": "Fluency",
+      "track": "intermediate",
+      "new_keys": [],
+      "allowed": [],
+      "kind": "drill",
+      "intro": "Speed Drills",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Speed Drills",
+          "body": "Use every finger you already learned. Accuracy 90 percent or you retry.",
+          "tts": "Speed Drills. Accuracy must be ninety percent."
+        },
+        {
+          "type": "words",
+          "prompt": "the cat and the dog sat on the mat and the sun was hot but the kids had fun"
+        },
+        {
+          "type": "sentence",
+          "prompt": "the cat and the dog sat on the mat and the sun was hot but the kids had fun"
+        }
+      ]
+    },
+    {
+      "id": "i11",
+      "title": "Intermediate Wrap-up",
+      "unit": "Wrapping Up",
+      "track": "intermediate",
+      "new_keys": [],
+      "allowed": [],
+      "kind": "drill",
+      "intro": "Intermediate Wrap-up",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Intermediate Wrap-up",
+          "body": "Use every finger you already learned. Accuracy 90 percent or you retry.",
+          "tts": "Intermediate Wrap-up. Accuracy must be ninety percent."
+        },
+        {
+          "type": "words",
+          "prompt": "Practice makes careful hands. Type the line once, then again a little faster."
+        },
+        {
+          "type": "sentence",
+          "prompt": "Practice makes careful hands. Type the line once, then again a little faster."
+        }
+      ]
+    },
+    {
+      "id": "i12",
+      "title": "Intermediate Assessment",
+      "unit": "Wrapping Up",
+      "track": "intermediate",
+      "new_keys": [],
+      "allowed": [],
+      "kind": "assessment",
+      "intro": "Intermediate Assessment",
+      "screens": [
+        {
+          "type": "teach",
+          "title": "Intermediate Assessment",
+          "body": "Use every finger you already learned. Accuracy 90 percent or you retry.",
+          "tts": "Intermediate Assessment. Accuracy must be ninety percent."
+        },
+        {
+          "type": "timed",
+          "seconds": 60,
+          "prompt": "Kids in our class sit tall. They type with both hands. They keep accuracy first."
+        }
+      ]
+    }
+  ]
+}
