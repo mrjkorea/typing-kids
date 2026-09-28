@@ -409,6 +409,26 @@
       .replace(/>/g, "&gt;");
   }
 
+
+  // Jay 28SEP2026: every passed lesson also lands a row in the ONE score book.
+  function logToOneBook(lessonTitle, wpmValue, accValue) {
+    if (!window.MRJ_SCORES) return;
+    var who = currentName();
+    if (!who) return;
+    window.MRJ_SCORES.post({
+      student: who,
+      program: "typing-kids",
+      appName: "MRJ Typing Kids",
+      source: "typing-kids",
+      unitTitle: String(lessonTitle || ""),
+      itemId: "typing:" + String(lessonTitle || "lesson") + ":" + new Date().toISOString().slice(0, 10),
+      itemType: "typing_lesson",
+      scoreValue: Number(accValue || 0),
+      scoreMax: 100,
+      metadata: { wpm: Number(wpmValue || 0), goal_wpm: Number(save.teacher_wpm || 0) }
+    });
+  }
+
   function finishScreen() {
     clearTimed();
     const a = acc();
@@ -438,6 +458,7 @@
       render();
       return;
     }
+    logToOneBook((lesson() || {}).title || (lesson() || {}).id, w, a);
     advanceOrFinish(true, w, a);
   }
 
