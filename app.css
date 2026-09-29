@@ -127,15 +127,6 @@ body {
   align-self: flex-start;
 }
 
-.name-input {
-  width: 100%;
-  max-width: 420px;
-  font-size: 1.1rem;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 2px solid rgba(0, 0, 0, 0.12);
-}
-
 .lesson-scroll {
   max-height: min(62vh, 520px);
   overflow-y: auto;

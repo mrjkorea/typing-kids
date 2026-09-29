@@ -71,8 +71,8 @@
   ];
 
   const Mode = {
+    WAIT: "wait",
     HUB: "hub",
-    NAME: "name",
     LESSONS: "lessons",
     TEACH: "teach",
     PLAY: "play",
@@ -84,7 +84,10 @@
   let curriculum = {};
   let shop = {};
   let save = defaultSave();
-  let mode = Mode.HUB;
+  let mode = Mode.WAIT;
+  let studentId = "";
+  let authReady = false;
+  let dataReady = false;
   let lessonIdx = 0;
   let screenIdx = 0;
   let target = "";
@@ -141,7 +144,7 @@
   }
 
   function currentName() {
-    return String(save.current || "");
+    return String(studentId || "").trim();
   }
 
   function currentStudent() {
@@ -226,6 +229,22 @@
     };
     save.students[currentName()] = st;
     persist();
+    postScore(lessonId, wpm, acc);
+  }
+
+  function postScore(lessonId, wpm, acc) {
+    const id = currentName();
+    if (!id) return;
+    const auth = window.MRJ_AUTH;
+    if (!auth || typeof auth.noteScore !== "function") return;
+    if (String(auth.student() || "").trim() !== id) return;
+    auth.noteScore({
+      program: "typing-kids",
+      itemId: String(lessonId || ""),
+      scoreValue: Number(wpm) || 0,
+      scoreMax: 100,
+      scorePct: Number(acc) || 0,
+    });
   }
 
   function isPassed(lessonId) {
@@ -377,6 +396,7 @@
   }
 
   function startLesson(i) {
+    if (!authReady) return;
     lessonIdx = i;
     screenIdx = 0;
     bootScreen();
@@ -645,55 +665,18 @@
     return p;
   }
 
-  function renderName(root) {
-    const box = document.createElement("div");
-    box.className = "vstack center-card";
-    box.appendChild(lbl("MRJ Typing Kids", "xl"));
-    box.appendChild(lbl("Type your name, then press Start. No internet. No ads."));
-    const input = document.createElement("input");
-    input.className = "name-input";
-    input.placeholder = "Student name";
-    input.autocomplete = "nickname";
-    box.appendChild(input);
-    const names = save.students || {};
-    const keys = Object.keys(names);
-    if (keys.length) {
-      box.appendChild(lbl("Or pick a saved student:"));
-      keys.forEach((n) => {
-        box.appendChild(
-          btn(n, () => {
-            ensureStudent(n);
-            mode = Mode.HUB;
-            render();
-          })
-        );
-      });
-    }
-    box.appendChild(
-      btn("Start", () => {
-        ensureStudent(input.value);
-        if (!currentName()) return;
-        mode = Mode.HUB;
-        render();
-      })
-    );
-    root.appendChild(box);
-  }
-
   function renderHub(root) {
     const v = document.createElement("div");
     v.className = "vstack";
     const top = document.createElement("div");
     top.className = "hstack spread";
     const st = currentStudent();
+    const who = currentName();
     top.appendChild(
-      lbl(`Hi ${currentName()}  •  ${st.points || 0} points`, "lg")
-    );
-    top.appendChild(
-      btn("Switch student", () => {
-        mode = Mode.NAME;
-        render();
-      }, { ghost: true })
+      lbl(
+        who ? `Hi ${who}  •  ${st.points || 0} points` : `${st.points || 0} points`,
+        "lg"
+      )
     );
     v.appendChild(top);
     v.appendChild(avatarRow());
@@ -876,7 +859,9 @@
       box.appendChild(
         lbl(`Accuracy ${snapped(lastAcc, 0.1)}%   WPM ${snapped(lastWpm, 0.1)}`)
       );
-      box.appendChild(lbl("+50 points. Dress your avatar in the shop."));
+      if (currentName()) {
+        box.appendChild(lbl("+50 points. Dress your avatar in the shop."));
+      }
       speak("Passed. Great work.");
       box.appendChild(
         btn("Next lesson", () => {
@@ -1007,8 +992,14 @@
   function render() {
     applyTheme();
     appEl.innerHTML = "";
-    if (mode === Mode.NAME) renderName(appEl);
-    else if (mode === Mode.HUB) renderHub(appEl);
+    if (mode === Mode.WAIT) {
+      const p = document.createElement("p");
+      p.className = "loading";
+      p.textContent = "Loading…";
+      appEl.appendChild(p);
+      return;
+    }
+    if (mode === Mode.HUB) renderHub(appEl);
     else if (mode === Mode.LESSONS) renderLessons(appEl);
     else if (mode === Mode.TEACH || mode === Mode.PLAY) renderPlay(appEl);
     else if (mode === Mode.RESULT) renderResult(appEl);
@@ -1038,10 +1029,29 @@
       )}</p>`;
       return;
     }
-    if (!currentName()) mode = Mode.NAME;
-    else mode = Mode.HUB;
+    dataReady = true;
+    if (authReady) enterAfterAuth();
+  }
+
+  function enterAfterAuth() {
+    if (!authReady || !dataReady) return;
+    if (studentId) ensureStudent(studentId);
+    else {
+      save.current = "";
+      persist();
+    }
+    mode = Mode.HUB;
     render();
   }
+
+  function onAuthReady(event) {
+    const detail = event && event.detail ? event.detail : {};
+    studentId = detail.id == null ? "" : String(detail.id).trim();
+    authReady = true;
+    enterAfterAuth();
+  }
+
+  window.addEventListener("mrj-auth-ready", onAuthReady);
 
   init();
 })();
