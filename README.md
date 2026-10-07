@@ -1,1 +1,1 @@
-MRJ Typing Kids web test build: a static, no-login typing player for Chrome that uses the same `curriculum.json` and shop as the Godot app; progress is stored in the browser under `localStorage` key `mrj_typing_kids`.
+MRJ Typing Kids web build (`20261007-pack-1`): typing player for Chrome with shared MRJ sign-in. Progress is stored per student under `localStorage` keys `mrj_typing_kids:<id_key>` and synced via `MRJ_AUTH.loadPack` / `savePack` for program `typing-kids`. Legacy device-wide key `mrj_typing_kids` is left untouched (not uploaded).
