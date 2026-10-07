@@ -1,8 +1,10 @@
 (function () {
   "use strict";
 
-  const SAVE_KEY = "mrj_typing_kids";
-  const PASS_ACCURACY = 90;
+  const BUILD = "20261007-pack-1";
+  const SYNC = window.TYPING_KIDS_SYNC || {};
+  const PROGRAM = SYNC.PROGRAM || "typing-kids";
+  const PASS_ACCURACY = SYNC.PASS_ACCURACY || 90;
 
   const THEMES = {
     sky: {
@@ -86,8 +88,10 @@
   let save = defaultSave();
   let mode = Mode.WAIT;
   let studentId = "";
+  let studentKey = "";
   let authReady = false;
   let dataReady = false;
+  let remoteSave = null;
   let lessonIdx = 0;
   let screenIdx = 0;
   let target = "";
@@ -112,6 +116,7 @@
   const appEl = document.getElementById("app");
 
   function defaultSave() {
+    if (typeof SYNC.defaultSave === "function") return SYNC.defaultSave();
     return {
       students: {},
       current: "",
@@ -122,25 +127,108 @@
     };
   }
 
-  function loadSave() {
+  function normalizeSave(raw) {
+    if (typeof SYNC.normalizeSave === "function") return SYNC.normalizeSave(raw);
+    const out = defaultSave();
+    if (raw && typeof raw === "object") Object.assign(out, raw);
+    out.pass_accuracy = PASS_ACCURACY;
+    return out;
+  }
+
+  function storageKeyForStudent(id) {
+    if (typeof SYNC.studentStorageKey === "function") {
+      return SYNC.studentStorageKey(id);
+    }
+    const k = String(id || "").trim().toLowerCase();
+    return k ? "mrj_typing_kids:" + k : "mrj_typing_kids";
+  }
+
+  function loadSaveFromKey(key) {
     save = defaultSave();
+    if (!key) return;
     try {
-      const raw = localStorage.getItem(SAVE_KEY);
+      const raw = localStorage.getItem(key);
       if (raw) {
-        const parsed = JSON.parse(raw);
-        if (parsed && typeof parsed === "object") {
-          Object.assign(save, parsed);
-        }
+        save = normalizeSave(JSON.parse(raw));
       }
     } catch (_) {
       /* ignore */
     }
-    save.pass_accuracy = PASS_ACCURACY;
-    if (!save.teacher_wpm || save.teacher_wpm < 1) save.teacher_wpm = 10;
+  }
+
+  function persistLocal() {
+    if (!studentKey) return;
+    try {
+      localStorage.setItem(studentKey, JSON.stringify(save));
+    } catch (_) {
+      /* ignore */
+    }
   }
 
   function persist() {
-    localStorage.setItem(SAVE_KEY, JSON.stringify(save));
+    persistLocal();
+    if (remoteSave && typeof remoteSave.queue === "function") {
+      remoteSave.queue();
+    }
+  }
+
+  function authApi() {
+    return window.MRJ_AUTH || null;
+  }
+
+  function packApiAvailable() {
+    const auth = authApi();
+    return !!(auth && typeof auth.loadPack === "function");
+  }
+
+  async function syncPackFromServer() {
+    const auth = authApi();
+    if (!packApiAvailable()) {
+      if (remoteSave) remoteSave.setPackLoadOk(true);
+      return;
+    }
+    let result;
+    try {
+      result = await auth.loadPack(PROGRAM);
+    } catch (_) {
+      result = { ok: false };
+    }
+    if (!result || !result.ok) {
+      if (remoteSave) {
+        remoteSave.setPackLoadOk(false);
+        remoteSave.scheduleRetry(function () {
+          syncPackFromServer();
+        });
+      }
+      return;
+    }
+    if (remoteSave) remoteSave.clearRetry();
+    const remote = typeof SYNC.parsePackJson === "function"
+      ? SYNC.parsePackJson(result.progress_json)
+      : defaultSave();
+    const before = normalizeSave(save);
+    const merged =
+      typeof SYNC.mergeSave === "function"
+        ? SYNC.mergeSave(before, remote)
+        : before;
+    const richer =
+      typeof SYNC.isRicherThan === "function"
+        ? SYNC.isRicherThan(merged, remote)
+        : false;
+    save = merged;
+    persistLocal();
+    if (remoteSave) remoteSave.setPackLoadOk(true);
+    if (
+      richer &&
+      typeof auth.savePack === "function" &&
+      (!auth.packReady || auth.packReady(PROGRAM))
+    ) {
+      try {
+        await auth.savePack(PROGRAM, JSON.stringify(save));
+      } catch (_) {
+        /* ignore */
+      }
+    }
   }
 
   function currentName() {
@@ -1010,7 +1098,17 @@
   window.addEventListener("keydown", onPlayKey);
 
   async function init() {
-    loadSave();
+    save = defaultSave();
+    if (typeof SYNC.createRemoteSaveScheduler === "function") {
+      remoteSave = SYNC.createRemoteSaveScheduler(authApi, function () {
+        return JSON.stringify(save);
+      });
+    }
+    window.addEventListener("pagehide", function () {
+      if (remoteSave && typeof remoteSave.flush === "function") {
+        remoteSave.flush();
+      }
+    });
     try {
       const [cRes, sRes] = await Promise.all([
         fetch("data/curriculum.json"),
@@ -1018,11 +1116,6 @@
       ]);
       curriculum = await cRes.json();
       shop = await sRes.json();
-      if (curriculum.default_wpm) {
-        if (!localStorage.getItem(SAVE_KEY)) {
-          save.teacher_wpm = Number(curriculum.default_wpm) || 10;
-        }
-      }
     } catch (err) {
       appEl.innerHTML = `<p class="loading">Could not load data. Open from GitHub Pages or a local server.<br>${escapeHtml(
         String(err)
@@ -1038,7 +1131,7 @@
     if (studentId) ensureStudent(studentId);
     else {
       save.current = "";
-      persist();
+      persistLocal();
     }
     mode = Mode.HUB;
     render();
@@ -1047,11 +1140,28 @@
   function onAuthReady(event) {
     const detail = event && event.detail ? event.detail : {};
     studentId = detail.id == null ? "" : String(detail.id).trim();
+    studentKey = studentId ? storageKeyForStudent(studentId) : "";
+    if (remoteSave) remoteSave.setPackLoadOk(false);
+    loadSaveFromKey(studentKey);
+    if (studentKey && curriculum.default_wpm) {
+      try {
+        if (!localStorage.getItem(studentKey)) {
+          save.teacher_wpm = Number(curriculum.default_wpm) || 10;
+          persistLocal();
+        }
+      } catch (_) {
+        /* ignore */
+      }
+    }
     authReady = true;
-    enterAfterAuth();
+    syncPackFromServer().finally(function () {
+      enterAfterAuth();
+    });
   }
 
   window.addEventListener("mrj-auth-ready", onAuthReady);
+
+  window.MRJ_TYPING_KIDS_BUILD = BUILD;
 
   init();
 })();

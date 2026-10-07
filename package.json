@@ -1,0 +1,7 @@
+{
+  "name": "typing-kids",
+  "private": true,
+  "scripts": {
+    "test": "node test/typing-kids-sync.test.js"
+  }
+}
