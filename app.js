@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const BUILD = "20261007-pack-1";
+  const BUILD = "20261011-savefix";
   const SYNC = window.TYPING_KIDS_SYNC || {};
   const PROGRAM = SYNC.PROGRAM || "typing-kids";
   const PASS_ACCURACY = SYNC.PASS_ACCURACY || 90;
@@ -317,22 +317,81 @@
     };
     save.students[currentName()] = st;
     persist();
-    postScore(lessonId, wpm, acc);
+    const L = lesson();
+    logTyping({
+      lessonId: String(lessonId || ""),
+      lessonTitle: String(L.title || lessonId || ""),
+      screenIdx,
+      screenType: String((screen() || {}).type || ""),
+      passed: true,
+      isLesson: true,
+    });
   }
 
-  function postScore(lessonId, wpm, acc) {
-    const id = currentName();
-    if (!id) return;
+  function round1(n) {
+    return snapped(n, 0.1);
+  }
+
+  function logTyping(opts) {
+    opts = opts || {};
     const auth = window.MRJ_AUTH;
-    if (!auth || typeof auth.noteScore !== "function") return;
-    if (String(auth.student() || "").trim() !== id) return;
-    auth.noteScore({
-      program: "typing-kids",
-      itemId: String(lessonId || ""),
-      scoreValue: Number(wpm) || 0,
-      scoreMax: 100,
-      scorePct: Number(acc) || 0,
-    });
+    const signed =
+      auth && typeof auth.student === "function"
+        ? String(auth.student() || "").trim()
+        : "";
+    if (!signed) return;
+
+    const lessonId = String(opts.lessonId || "");
+    const isLesson = Boolean(opts.isLesson);
+    const itemId = isLesson
+      ? lessonId + ":lesson"
+      : lessonId + ":s" + (Number(opts.screenIdx) + 1);
+    const scoreValue = typed;
+    const scoreMax = typed + errors;
+    const scorePct =
+      scoreMax > 0 ? Math.round((100 * scoreValue) / scoreMax) : 100;
+    const needWpm = Number(save.teacher_wpm || 10);
+    const needAcc = Number(save.pass_accuracy || PASS_ACCURACY);
+    const localD =
+      window.MRJ_SCORES && typeof window.MRJ_SCORES.localDate === "function"
+        ? window.MRJ_SCORES.localDate()
+        : "";
+    const metadata = {
+      wpm: round1(wpm()),
+      need_wpm: needWpm,
+      need_acc: needAcc,
+      errors,
+      screen_type: String(opts.screenType || ""),
+      reason: String(opts.reason || ""),
+    };
+    const passed = Boolean(opts.passed);
+    const itemType = isLesson ? "typing_lesson" : "typing_screen";
+
+    if (window.MRJ_SCORES && typeof window.MRJ_SCORES.post === "function") {
+      window.MRJ_SCORES.post({
+        program: PROGRAM,
+        appName: "MRJ Typing Kids",
+        source: "typing-kids",
+        unitTitle: String(opts.lessonTitle || ""),
+        itemId,
+        itemType,
+        scoreValue,
+        scoreMax,
+        scorePct,
+        correctness: passed ? "correct" : "incorrect",
+        metadata,
+      });
+    }
+    if (auth && typeof auth.noteScore === "function") {
+      auth.noteScore({
+        program: PROGRAM,
+        itemId,
+        scoreValue,
+        scoreMax,
+        scorePct,
+        localDate: localD,
+      });
+    }
   }
 
   function isPassed(lessonId) {
@@ -518,22 +577,16 @@
   }
 
 
-  // Jay 28SEP2026: every passed lesson also lands a row in the ONE score book.
-  function logToOneBook(lessonTitle, wpmValue, accValue) {
-    if (!window.MRJ_SCORES) return;
-    var who = currentName();
-    if (!who) return;
-    window.MRJ_SCORES.post({
-      student: who,
-      program: "typing-kids",
-      appName: "MRJ Typing Kids",
-      source: "typing-kids",
-      unitTitle: String(lessonTitle || ""),
-      itemId: "typing:" + String(lessonTitle || "lesson") + ":" + new Date().toISOString().slice(0, 10),
-      itemType: "typing_lesson",
-      scoreValue: Number(accValue || 0),
-      scoreMax: 100,
-      metadata: { wpm: Number(wpmValue || 0), goal_wpm: Number(save.teacher_wpm || 0) }
+  function screenLogTyping(passed, reason) {
+    const L = lesson();
+    const sc = screen();
+    logTyping({
+      lessonId: String(L.id || ""),
+      lessonTitle: String(L.title || L.id || ""),
+      screenIdx,
+      screenType: String(sc.type || ""),
+      passed,
+      reason: reason || "",
     });
   }
 
@@ -550,6 +603,7 @@
       failReason = `Accuracy was ${snapped(a, 0.1)}%. Need 90%.`;
       lastWpm = w;
       lastAcc = a;
+      screenLogTyping(false, failReason);
       beep("error");
       mode = Mode.RESULT;
       render();
@@ -561,12 +615,13 @@
       failReason = `Speed was ${snapped(w, 0.1)} WPM. Need ${needWpm}.`;
       lastWpm = w;
       lastAcc = a;
+      screenLogTyping(false, failReason);
       beep("error");
       mode = Mode.RESULT;
       render();
       return;
     }
-    logToOneBook((lesson() || {}).title || (lesson() || {}).id, w, a);
+    screenLogTyping(true, "");
     advanceOrFinish(true, w, a);
   }
 
@@ -1162,6 +1217,18 @@
   window.addEventListener("mrj-auth-ready", onAuthReady);
 
   window.MRJ_TYPING_KIDS_BUILD = BUILD;
+
+  const testApi = {
+    logTyping,
+    setPlayMetrics(typedCount, errorCount, startedMs) {
+      typed = Number(typedCount) || 0;
+      errors = Number(errorCount) || 0;
+      startedAt = startedMs == null ? Date.now() : Number(startedMs);
+    },
+  };
+  if (typeof globalThis !== "undefined") {
+    globalThis.__MRJ_TYPING_KIDS_TEST__ = testApi;
+  }
 
   init();
 })();
