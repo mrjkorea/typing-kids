@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const BUILD = "20261011-savefix";
+  const BUILD = "20261013-scoresrx";
   const SYNC = window.TYPING_KIDS_SYNC || {};
   const PROGRAM = SYNC.PROGRAM || "typing-kids";
   const PASS_ACCURACY = SYNC.PASS_ACCURACY || 90;
