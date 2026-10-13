@@ -6,7 +6,7 @@ const path = require("path");
 const vm = require("vm");
 
 const TEST_STUDENT = "zz_test_mrjmetrics";
-const BUILD = "20261011-savefix";
+const BUILD = "20261013-scoresrx";
 
 const posts = [];
 const noteScores = [];
