@@ -4,7 +4,7 @@ const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
 
-const BUILD = "20261013-scoresrx";
+const BUILD = "20261022-teacher-mode";
 const root = path.join(__dirname, "..");
 
 const appJs = fs.readFileSync(path.join(root, "app.js"), "utf8");
