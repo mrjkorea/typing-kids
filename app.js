@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const BUILD = "20261013-scoresrx";
+  const BUILD = "20261022-teacher-mode";
   const SYNC = window.TYPING_KIDS_SYNC || {};
   const PROGRAM = SYNC.PROGRAM || "typing-kids";
   const PASS_ACCURACY = SYNC.PASS_ACCURACY || 90;
@@ -403,7 +403,18 @@
     return curriculum.lessons || [];
   }
 
+  function mrjTeacher() {
+    try {
+      if (window.MRJTeacherUnlock && window.MRJTeacherUnlock.isMrjTeacher()) return true;
+      var api = window.MRJSignin || window.MRJ_AUTH;
+      return !!(api && typeof api.isTeacher === "function" && api.isTeacher());
+    } catch (e) {
+      return false;
+    }
+  }
+
   function lessonUnlocked(idx) {
+    if (mrjTeacher()) return true;
     if (idx <= 0) return true;
     const L = lessons();
     if (idx >= L.length) return false;
@@ -1215,6 +1226,14 @@
   }
 
   window.addEventListener("mrj-auth-ready", onAuthReady);
+  document.addEventListener("mrj-teacher", function () {
+    if (authReady && dataReady) render();
+  });
+  if (window.MRJTeacherUnlock && window.MRJTeacherUnlock.installRefresh) {
+    window.MRJTeacherUnlock.installRefresh(function () {
+      if (authReady && dataReady) render();
+    });
+  }
 
   window.MRJ_TYPING_KIDS_BUILD = BUILD;
 
