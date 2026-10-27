@@ -2,6 +2,6 @@
   "name": "typing-kids",
   "private": true,
   "scripts": {
-    "test": "node test/typing-kids-sync.test.js && node test/score_log.test.js && node test/cache_bump.test.js && node test/mrj_scores_post.test.js"
+    "test": "node test/typing-kids-sync.test.js && node test/score_log.test.js && node test/cache_bump.test.js && node test/mrj_scores_post.test.js && node test/mrj-teacher-unlock.test.js"
   }
 }

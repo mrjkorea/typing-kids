@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const BUILD = "20261022-teacher-mode";
+  const BUILD = "20261027-teacher-chip";
   const SYNC = window.TYPING_KIDS_SYNC || {};
   const PROGRAM = SYNC.PROGRAM || "typing-kids";
   const PASS_ACCURACY = SYNC.PASS_ACCURACY || 90;

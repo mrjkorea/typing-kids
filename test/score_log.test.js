@@ -6,7 +6,7 @@ const path = require("path");
 const vm = require("vm");
 
 const TEST_STUDENT = "zz_test_mrjmetrics";
-const BUILD = "20261022-teacher-mode";
+const BUILD = "20261027-teacher-chip";
 
 const posts = [];
 const noteScores = [];
